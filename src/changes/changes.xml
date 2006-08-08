@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<document>
+  <properties>
+    <title>Changes</title>
+  </properties>
+  <body>
+    <release version="0.3" date="04-06-2006">
+      <action type="add" dev="cliffano">
+        Upgraded build to use Maven2. Refactored the code base. Added more unit tests.
+      </action>
+    </release>
+    <release version="0.2" date="13-03-2006">
+      <action type="add" dev="cliffano">
+        Added Tagyu4J's getRelatedTags. Response is splitted into RelatedTagsResponse and TagSuggestionsResponse. Tag provides more details (name, relation, and url). TagSuggestionsResponse provides category information.
+      </action>
+    </release>
+    <release version="0.1" date="31-12-2005">
+      <action type="add" dev="cliffano">
+        Initial release.
+      </action>
+    </release>
+  </body>
+</document>

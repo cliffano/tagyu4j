@@ -35,6 +35,9 @@ import java.net.URLEncoder;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.URI;
+import org.apache.commons.httpclient.URIException;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -53,6 +56,11 @@ public class ServiceManagerImpl implements ServiceManager {
     private HttpClient mHttpClient;
 
     /**
+     * Method used to make the connection to Tagyu service.
+     */
+    private HttpMethod mHttpMethod;
+
+    /**
      * The value for authentication header.
      */
     private String mAuthenticationHeaderValue;
@@ -62,6 +70,20 @@ public class ServiceManagerImpl implements ServiceManager {
      */
     public ServiceManagerImpl() {
         mHttpClient = new HttpClient();
+        mHttpMethod = new GetMethod();
+    }
+
+    /**
+     * Create a ServiceManager instance with specified HttpClient and
+     * HttpMethod.
+     * @param httpClient the http client
+     * @param httpMethod the http method
+     */
+    public ServiceManagerImpl(
+            final HttpClient httpClient,
+            final HttpMethod httpMethod) {
+        mHttpClient = httpClient;
+        mHttpMethod = httpMethod;
     }
 
     /**
@@ -124,20 +146,25 @@ public class ServiceManagerImpl implements ServiceManager {
 
         String encodedUrlWithRequest = encodeUrlWithRequest(url, request);
 
-        GetMethod method = new GetMethod(encodedUrlWithRequest);
-        method.setFollowRedirects(true);
+        try {
+            mHttpMethod.setURI(new URI(encodedUrlWithRequest, true));
+        } catch (URIException urie) {
+            throw new Tagyu4JException("Unable to get xml response string "
+                    + "due to invalid url: " + url, urie);
+        }
+        mHttpMethod.setFollowRedirects(true);
 
         // authenticate by setting http basic authentication header
         if (mAuthenticationHeaderValue != null) {
-            method.setRequestHeader(
+            mHttpMethod.setRequestHeader(
                     "Authorization", mAuthenticationHeaderValue);
         }
 
         String result = null;
 
         try {
-            mHttpClient.executeMethod(method);
-            result = method.getResponseBodyAsString();
+            mHttpClient.executeMethod(mHttpMethod);
+            result = mHttpMethod.getResponseBodyAsString();
         } catch (HttpException he) {
             throw new Tagyu4JException(
                     "Unable to get xml response string",
@@ -147,7 +174,7 @@ public class ServiceManagerImpl implements ServiceManager {
                     "Unable to get xml response string",
                     ioe);
         } finally {
-            method.releaseConnection();
+            mHttpMethod.releaseConnection();
         }
         return result;
     }

@@ -1,46 +1,30 @@
 package com.mbledug.tagyu4j.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
 
+import com.mbledug.tagyu4j.util.DataFixture;
+
 public class ModelsTest extends TestCase {
 
-    private static final String TAG_VALUE = "tagging";
-    private static final String TAG_RELATION = "related";
-    private static final String TAG_URL = "http://tagyu.com/api/tag/tagging";
-    private static final String REQUEST_TAG = "css";
-    private static final String CATEGORY = "Technology";
+    public void testCreateModels() {
 
-    private List mTags;
-    private Tag mTag;
+        Tag tag = DataFixture.createTag();
+        assertEquals(DataFixture.TAG_VALUE, tag.getValue());
+        assertEquals(DataFixture.TAG_RELATION, tag.getRelation());
+        assertEquals(DataFixture.TAG_URL, tag.getHref());
 
-    protected void setUp() {
-        mTag = new Tag(TAG_VALUE, TAG_RELATION, TAG_URL);
+        List relatedTags = DataFixture.createTags(10);
+        RelatedTagsResponse relatedTagsResponse = new RelatedTagsResponse(
+                relatedTags, DataFixture.REQUEST_TAG);
+        assertEquals(relatedTags, relatedTagsResponse.getRelatedTags());
+        assertEquals(DataFixture.REQUEST_TAG, relatedTagsResponse.getRequestTag());
 
-        mTags = new ArrayList();
-        mTags.add(mTag);
-        mTags.add(mTag);
-    }
-
-    public void testTagImmutability() {
-        assertEquals(TAG_VALUE, mTag.getValue());
-        assertEquals(TAG_RELATION, mTag.getRelation());
-        assertEquals(TAG_URL, mTag.getHref());
-    }
-
-    public void testRelatedTagResponseImmutability() {
-        RelatedTagsResponse response = new RelatedTagsResponse(
-                mTags, REQUEST_TAG);
-        assertEquals(mTags, response.getRelatedTags());
-        assertEquals(REQUEST_TAG, response.getRequestTag());
-    }
-
-    public void testTagSuggestionsResponseImmutability() {
-        TagSuggestionsResponse response = new TagSuggestionsResponse(
-                mTags, CATEGORY);
-        assertEquals(mTags, response.getSuggestedTags());
-        assertEquals(CATEGORY, response.getCategory());
+        List tagSuggestions = DataFixture.createTags(20);
+        TagSuggestionsResponse tagSuggestionsResponse = new TagSuggestionsResponse(
+                tagSuggestions, DataFixture.CATEGORY);
+        assertEquals(tagSuggestions, tagSuggestionsResponse.getSuggestedTags());
+        assertEquals(DataFixture.CATEGORY, tagSuggestionsResponse.getCategory());
     }
 }

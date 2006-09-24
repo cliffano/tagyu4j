@@ -4,12 +4,22 @@
     <title>Changes</title>
   </properties>
   <body>
-    <release version="0.2" date="10-07-2006">
-      <action type="add" dev="cliffano">
-        Changed build tool from Equinox to Maven2. Upgraded Struts, Spring, Hibernate. Replaced HSQLDB with MySQL with C3P0. Added unit tests.
+    <release version="0.4-SNAPSHOT" date="current">
+      <action type="update" dev="cliffano">
+        Refactored unit tests, introduced mock objects. Added constructors to Tagyu4J and ServiceManager.
       </action>
     </release>
-    <release version="0.1" date="14-11-2004">
+    <release version="0.3" date="04-06-2006">
+      <action type="add" dev="cliffano">
+        Upgraded build to use Maven2. Refactored the code base. Added more unit tests.
+      </action>
+    </release>
+    <release version="0.2" date="12-03-2006">
+      <action type="add" dev="cliffano">
+        Split response to tag suggestions and related tags. Suggested tags response provides category/classification. Tag provides name, relation, url.
+      </action>
+    </release>
+    <release version="0.1" date="14-11-2005">
       <action type="add" dev="cliffano">
         Initial release.
       </action>

@@ -86,15 +86,26 @@ public class Tagyu4J {
     }
 
     /**
-     * Create an instance of Tagyu4J with
-     * username and password to use Tagyu service.
-     * @param username the Tagyu username
-     * @param password the Tagyu password
+     * Create an instance of Tagyu4J with specified ServiceManager and
+     * ResponseParser.
+     * @param serviceManager the service manager
+     * @param responseParser the response parser
      */
     public Tagyu4J(
+            final ServiceManager serviceManager,
+            final ResponseParser responseParser) {
+        mServiceManager = serviceManager;
+        mResponseParser = responseParser;
+    }
+
+    /**
+     * Sets authentication using Tagyu username and password.
+     * @param username Tagyu username
+     * @param password Tagyu password
+     */
+    public final void setAuthentication(
             final String username,
             final String password) {
-        this();
         mServiceManager.setAuthentication(username, password);
     }
 

@@ -1,30 +1,32 @@
 package com.mbledug.tagyu4j.util;
 
+import java.io.IOException;
+
 import junit.framework.TestCase;
+
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpMethod;
 
 import com.mbledug.tagyu4j.exception.Tagyu4JException;
 
 public class ServiceManagerTest extends TestCase {
 
-    private static final String INVALID_SERVICE_URL = "http://blahblahblah";
-    private static final String VALID_SERVICE_URL_TAG_SUGGESTIONS = "http://tagyu.com/api/suggest/";
-    private static final String VALID_SERVICE_URL_RELATED_TAGS = "http://tagyu.com/api/tag/css";
-    private static final String INVALID_PROXY_HOST = "http://blahblahblah";
-    private static final int DUMMY_PROXY_PORT = 8080;
-    private static final String DUMMY_PROXY_USERNAME = "someusername";
-    private static final String DUMMY_PROXY_PASSWORD = "somepassword";
-    private static final String TAGYU_USERNAME = "tagyu4j";
-    private static final String TAGYU_PASSWORD = "tagyu4j";
-
     private ServiceManager mServiceManager;
+    private DataFixture mDataFixture;
+    private HttpClient mMockHttpClient;
+    private HttpMethod mMockHttpMethod;
 
     protected void setUp() {
-        mServiceManager = new ServiceManagerImpl();
+        mDataFixture = new DataFixture();
     }
 
     public void testExecuteTagSuggestionsSuccess() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, null);
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_TAG_SUGGESTIONS, false);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
         try {
-            String response = mServiceManager.execute(VALID_SERVICE_URL_TAG_SUGGESTIONS, "tags+and+tagging");
+            String response = mServiceManager.execute(DataFixture.VALID_SERVICE_URL_TAG_SUGGESTIONS, "tags+and+tagging");
             assertNotNull(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
@@ -32,9 +34,12 @@ public class ServiceManagerTest extends TestCase {
     }
 
     public void testExecuteTagSuggestionsWithAuthenticationSuccess() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, null);
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_TAG_SUGGESTIONS, true);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
+        mServiceManager.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
         try {
-            mServiceManager.setAuthentication(TAGYU_USERNAME, TAGYU_PASSWORD);
-            String response = mServiceManager.execute(VALID_SERVICE_URL_TAG_SUGGESTIONS, "tags+and+tagging");
+            String response = mServiceManager.execute(DataFixture.VALID_SERVICE_URL_TAG_SUGGESTIONS, "tags+and+tagging");
             assertNotNull(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
@@ -42,44 +47,80 @@ public class ServiceManagerTest extends TestCase {
     }
 
     public void testExecuteRelatedTagsSuccess() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, null);
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_TAG_SUGGESTIONS, false);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
         try {
-            String response = mServiceManager.execute(VALID_SERVICE_URL_RELATED_TAGS, "css");
+            String response = mServiceManager.execute(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, "css");
             assertNotNull(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 
-    public void testExecuteFailureInvalidServiceUrl() {
+    public void testExecuteRelatedTagsWithAuthenticationSuccess() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, null);
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_TAG_SUGGESTIONS, true);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
+        mServiceManager.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
         try {
-            mServiceManager.execute(INVALID_SERVICE_URL, "css");
+            String response = mServiceManager.execute(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, "css");
+            assertNotNull(response);
+        } catch (Tagyu4JException te) {
+            fail("Tagyu4JException should not occur: " + te.getMessage());
+        }
+    }
+
+    public void testExecuteWithInvalidServiceUrlGivesTagyu4JException() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, null);
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.INVALID_SERVICE_URL, false);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
+        try {
+            mServiceManager.execute(DataFixture.INVALID_SERVICE_URL, DataFixture.REQUEST_TAG);
             fail("Test with invalid service url should have failed at this point.");
         } catch (Tagyu4JException te) {
             // Tagyu4JException is thrown as expected
         }
     }
 
-    public void testExecuteFailureInvalidProxy() {
+    public void testExecuteFailureWithHttpClientThrowingHttpExceptionGivesTagyu4JException() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, new HttpException());
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, false);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
         try {
-            mServiceManager.setProxy(INVALID_PROXY_HOST, DUMMY_PROXY_PORT);
-            mServiceManager.execute(VALID_SERVICE_URL_RELATED_TAGS, "css");
-            fail("Test with invalid proxy should have failed at this point.");
+            mServiceManager.execute(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, DataFixture.REQUEST_TAG);
+            fail("Test with http client throwing exception should have failed at this point.");
         } catch (Tagyu4JException te) {
             // Tagyu4JException is thrown as expected
         }
     }
 
-    public void testExecuteFailureInvalidAuthenticatedProxy() {
+    public void testExecuteFailureWithHttpClientThrowingIoExceptionGivesTagyu4JException() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(false, new IOException());
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, false);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
         try {
-            mServiceManager.setProxy(
-                    INVALID_PROXY_HOST,
-                    DUMMY_PROXY_PORT,
-                    DUMMY_PROXY_USERNAME,
-                    DUMMY_PROXY_PASSWORD);
-            mServiceManager.execute(VALID_SERVICE_URL_RELATED_TAGS, "css");
-            fail("Test with invalid authenticated proxy should have failed at this point.");
+            mServiceManager.execute(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, DataFixture.REQUEST_TAG);
+            fail("Test with http client throwing exception should have failed at this point.");
         } catch (Tagyu4JException te) {
             // Tagyu4JException is thrown as expected
+        }
+    }
+
+    public void testExecuteSuccessWithProxy() {
+        mMockHttpClient = mDataFixture.createMockHttpClient(true, null);
+        mMockHttpMethod = mDataFixture.createMockHttpMethod(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, false);
+        mServiceManager = new ServiceManagerImpl(mMockHttpClient, mMockHttpMethod);
+        try {
+            mServiceManager.setProxy(
+                    DataFixture.DUMMY_PROXY_HOST,
+                    DataFixture.DUMMY_PROXY_PORT,
+                    DataFixture.DUMMY_PROXY_USERNAME,
+                    DataFixture.DUMMY_PROXY_PASSWORD);
+            String response = mServiceManager.execute(DataFixture.VALID_SERVICE_URL_RELATED_TAGS, DataFixture.REQUEST_TAG);
+            assertNotNull(response);
+        } catch (Tagyu4JException te) {
+            fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 }

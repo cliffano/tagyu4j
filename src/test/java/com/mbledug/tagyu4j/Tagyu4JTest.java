@@ -36,6 +36,9 @@ import com.mbledug.tagyu4j.exception.Tagyu4JException;
 import com.mbledug.tagyu4j.model.RelatedTagsResponse;
 import com.mbledug.tagyu4j.model.Tag;
 import com.mbledug.tagyu4j.model.TagSuggestionsResponse;
+import com.mbledug.tagyu4j.util.DataFixture;
+import com.mbledug.tagyu4j.util.ResponseParser;
+import com.mbledug.tagyu4j.util.ServiceManager;
 
 /**
  * Tests the available methods.
@@ -43,76 +46,109 @@ import com.mbledug.tagyu4j.model.TagSuggestionsResponse;
  */
 public class Tagyu4JTest extends TestCase {
 
-    private static final String INVALID_PROXY_HOST = "http://blahblahblah";
-    private static final int DUMMY_PROXY_PORT = 8080;
-    private static final String DUMMY_PROXY_USERNAME = "someusername";
-    private static final String DUMMY_PROXY_PASSWORD = "somepassword";
-    private static final String TAGYU_USERNAME = "tagyu4j";
-    private static final String TAGYU_PASSWORD = "tagyu4j";
-
     private Tagyu4J mTagyu4J;
+    private ServiceManager mServiceManager;
+    private ResponseParser mResponseParser;
+    private DataFixture mDataFixture;
 
     protected void setUp() {
-        // set authentication to avoid 1 request / minute restriction
-        mTagyu4J = new Tagyu4J(TAGYU_USERNAME, TAGYU_PASSWORD);
+        mDataFixture = new DataFixture();
     }
 
-    public void testGetTagSuggestionsTextSuccess() {
+    public void testGetTagSuggestionsWithTextViaLiveService() {
+        mTagyu4J = new Tagyu4J();
+        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
         try {
-            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions("Imagine all the people - John Lennon.");
+            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_TEXT);
             assertTagSuggestionsResponse(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 
-    public void testGetTagSuggestionsUrlSuccess() {
-
+    public void testGetTagSuggestionsWithUrlViaLiveService() {
+        mTagyu4J = new Tagyu4J();
+        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
         try {
-            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions("www.tagyu.com");
+            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_URL);
             assertTagSuggestionsResponse(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 
-    public void testGetRelatedTagsSuccess() {
-
+    public void testGetRelatedTagsViaLiveService() {
+        mTagyu4J = new Tagyu4J();
+        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
         try {
             RelatedTagsResponse response = mTagyu4J.getRelatedTags("music");
             assertRelatedTagsResponse(response);
         } catch (Tagyu4JException te) {
-            te.printStackTrace();
             fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 
-    public void testProxyFailure() {
-
+    public void testGetTagSuggestionsWithTextViaMockService() {
+        mServiceManager = mDataFixture.createMockServiceManager(false);
+        mResponseParser = mDataFixture.createMockTagSuggestionsResponseParser();
+        mTagyu4J = new Tagyu4J(mServiceManager, mResponseParser);
         try {
-            mTagyu4J.setProxy(INVALID_PROXY_HOST, DUMMY_PROXY_PORT);
-            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions("www.tagyu.com");
-            fail("Test with invalid proxy should have failed at this point. " +
-                    "Unexpected response: " + response);
+            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_TEXT);
+            assertTagSuggestionsResponse(response);
         } catch (Tagyu4JException te) {
-            // Tagyu4JException is thrown as expected
+            fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 
-    public void testAuthenticatedProxyFailure() {
-
+    public void testGetTagSuggestionsWithUrlViaMockService() {
+        mServiceManager = mDataFixture.createMockServiceManager(false);
+        mResponseParser = mDataFixture.createMockTagSuggestionsResponseParser();
+        mTagyu4J = new Tagyu4J(mServiceManager, mResponseParser);
         try {
-            mTagyu4J.setProxy(
-                    INVALID_PROXY_HOST, DUMMY_PROXY_PORT,
-                    DUMMY_PROXY_USERNAME, DUMMY_PROXY_PASSWORD);
-            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions("www.tagyu.com");
-            fail("Test with invalid authenticated proxy should have failed at this point. " +
-                    "Unexpected response: " + response);
+            TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_URL);
+            assertTagSuggestionsResponse(response);
         } catch (Tagyu4JException te) {
-            // Tagyu4JException is thrown as expected
+            fail("Tagyu4JException should not occur: " + te.getMessage());
         }
     }
 
+    public void testGetRelatedTagsViaMockService() {
+        mServiceManager = mDataFixture.createMockServiceManager(false);
+        mResponseParser = mDataFixture.createMockRelatedTagsResponseParser();
+        mTagyu4J = new Tagyu4J(mServiceManager, mResponseParser);
+        try {
+            RelatedTagsResponse response = mTagyu4J.getRelatedTags(DataFixture.REQUEST_TAG);
+            assertRelatedTagsResponse(response);
+        } catch (Tagyu4JException te) {
+            fail("Tagyu4JException should not occur: " + te.getMessage());
+        }
+    }
+
+    public void testGetRelatedTagsWithProxyViaMockService() {
+        mServiceManager = mDataFixture.createMockServiceManager(true);
+        mResponseParser = mDataFixture.createMockRelatedTagsResponseParser();
+        mTagyu4J = new Tagyu4J(mServiceManager, mResponseParser);
+        try {
+            mTagyu4J.setProxy(DataFixture.DUMMY_PROXY_HOST, DataFixture.DUMMY_PROXY_PORT);
+            RelatedTagsResponse response = mTagyu4J.getRelatedTags(DataFixture.REQUEST_TAG_URL);
+            assertRelatedTagsResponse(response);
+        } catch (Tagyu4JException te) {
+            fail("Tagyu4JException should not occur: " + te.getMessage());
+        }
+    }
+
+    public void testGetRelatedTagsWithAuthenticatedProxyViaMockService() {
+        mServiceManager = mDataFixture.createMockServiceManager(true);
+        mResponseParser = mDataFixture.createMockRelatedTagsResponseParser();
+        mTagyu4J = new Tagyu4J(mServiceManager, mResponseParser);
+        try {
+            mTagyu4J.setProxy(DataFixture.DUMMY_PROXY_HOST, DataFixture.DUMMY_PROXY_PORT, DataFixture.DUMMY_PROXY_USERNAME, DataFixture.DUMMY_PROXY_PASSWORD);
+            RelatedTagsResponse response = mTagyu4J.getRelatedTags(DataFixture.REQUEST_TAG_URL);
+            assertRelatedTagsResponse(response);
+        } catch (Tagyu4JException te) {
+            fail("Tagyu4JException should not occur: " + te.getMessage());
+        }
+    }
     private void assertTagSuggestionsResponse(TagSuggestionsResponse response) {
         assertNotNull(response.getCategory());
         assertNotNull(response.getSuggestedTags());

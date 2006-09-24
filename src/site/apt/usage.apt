@@ -45,8 +45,9 @@ while (it.hasNext()) {
 
     There's a limit of 1 request / minute for anonymous users. You can register
     for a soft cap limit of 1000 requests / day. To authenticate with your
-    registered account, create an instance with username and password.
+    registered account, set Tagyu4J instance with Tagyu username and password.
 
 +-------------------------------------------------------------------+
-Tagyu4J tagyu4J = new Tagyu4J("username", "password");
+Tagyu4J tagyu4J = new Tagyu4J();
+tagyu4J.setAuthentication("username", "password");
 +-------------------------------------------------------------------+

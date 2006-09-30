@@ -1,12 +1,11 @@
 package com.mbledug.tagyu4j.util;
 
+import com.mbledug.tagyu4j.BaseTest;
 import com.mbledug.tagyu4j.exception.Tagyu4JException;
 import com.mbledug.tagyu4j.model.RelatedTagsResponse;
 import com.mbledug.tagyu4j.model.TagSuggestionsResponse;
 
-import junit.framework.TestCase;
-
-public class ResponseParserTest extends TestCase {
+public class ResponseParserTest extends BaseTest {
 
     private ResponseParserImpl mParser;
 
@@ -18,7 +17,7 @@ public class ResponseParserTest extends TestCase {
 
         try {
             TagSuggestionsResponse response = mParser.parseTagSuggestions(DataFixture.createTagSuggestionsResponseXmlString(30));
-            assertNotNull(response);
+            assertTagSuggestionsResponse(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
         }
@@ -50,7 +49,7 @@ public class ResponseParserTest extends TestCase {
 
         try {
             RelatedTagsResponse response = mParser.parseRelatedTags(DataFixture.createRelatedTagsResponseXmlString(20));
-            assertNotNull(response);
+            assertRelatedTagsResponse(response);
         } catch (Tagyu4JException te) {
             fail("Tagyu4JException should not occur: " + te.getMessage());
         }

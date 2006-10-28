@@ -66,7 +66,7 @@ public class ServiceManagerImpl implements ServiceManager {
     private String mAuthenticationHeaderValue;
 
     /**
-     * Create an instance of ServiceManager.
+     * Create an instance of {@link ServiceManagerImpl}.
      */
     public ServiceManagerImpl() {
         mHttpClient = new HttpClient();
@@ -74,8 +74,8 @@ public class ServiceManagerImpl implements ServiceManager {
     }
 
     /**
-     * Create a ServiceManager instance with specified HttpClient and
-     * HttpMethod.
+     * Creates a {@link ServiceManagerImpl} instance with specified HttpClient
+     * and HttpMethod.
      * @param httpClient the http client
      * @param httpMethod the http method
      */
@@ -134,7 +134,7 @@ public class ServiceManagerImpl implements ServiceManager {
     }
 
     /**
-     * Create a URL connection and retrieve the response String.
+     * Creates a URL connection and retrieve the response String.
      * @param url the base url which the request will be added to
      * @param request the request string to be passed on the url
      * @return the response String
@@ -180,7 +180,7 @@ public class ServiceManagerImpl implements ServiceManager {
     }
 
     /**
-     * Append request to url and encode it.
+     * Appends request to url and encodes it.
      * @param url the url of the service
      * @param request the request string to be passed on the url
      * @return the encoded url with the request appended to it

@@ -42,10 +42,10 @@ import com.mbledug.tagyu4j.util.ServiceManagerImpl;
  * <p>
  * Usage: simply create an instance of Tagyu4J. For example:
  *   <pre>
- *     Tagyu4J tagyu4j = new Tagyu4J();
- *     TagSuggestionsResponse tagSuggestionsResponse =
+ *     {@link Tagyu4J} tagyu4j = new {@link Tagyu4J}();
+ *     {@link TagSuggestionsResponse} tagSuggestionsResponse =
  *             tagyu4j.getTagSuggestions("tags and tagging");
- *     RelatedTagsResponse relatedTagsResponse =
+ *     {@link RelatedTagsResponse} relatedTagsResponse =
  *             tagyu4j.getRelatedTags("css");
  *   </pre>
  * </p>
@@ -72,13 +72,14 @@ public class Tagyu4J {
      * The service call used to execute the methods.
      */
     private ServiceManager mServiceManager;
+
     /**
      * The parser used to parse the XML response.
      */
     private ResponseParser mResponseParser;
 
     /**
-     * Create an instance of Tagyu4J.
+     * Creates an instance of {@link Tagyu4J}.
      */
     public Tagyu4J() {
         mServiceManager = new ServiceManagerImpl();
@@ -86,8 +87,8 @@ public class Tagyu4J {
     }
 
     /**
-     * Create an instance of Tagyu4J with specified ServiceManager and
-     * ResponseParser.
+     * Creates an instance of {@link Tagyu4J} with specified
+     * {@link ServiceManager} and {@link ResponseParser}.
      * @param serviceManager the service manager
      * @param responseParser the response parser
      */
@@ -135,7 +136,7 @@ public class Tagyu4J {
     }
 
     /**
-     * Retrieve tag suggestions.
+     * Retrieves tag suggestions.
      * @param request text or a URL for which you would like tag suggestions
      * @return response for tag suggestions
      * @throws Tagyu4JException when there's a problem with
@@ -151,7 +152,7 @@ public class Tagyu4J {
     }
 
     /**
-     * Retrieve related tags.
+     * Retrieves related tags.
      * @param request a tag for which you want to find related tags of
      * @return response for related tags
      * @throws Tagyu4JException when there's a problem with

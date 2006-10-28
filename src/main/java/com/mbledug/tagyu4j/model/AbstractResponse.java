@@ -42,7 +42,7 @@ abstract class AbstractResponse {
     private List mTags;
 
     /**
-     * Create a Response instance.
+     * Creates a response instance.
      * @param tags the list of tags
      */
     protected AbstractResponse(final List tags) {

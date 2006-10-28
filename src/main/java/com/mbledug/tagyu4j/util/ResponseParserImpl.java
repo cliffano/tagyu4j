@@ -43,19 +43,20 @@ import com.mbledug.tagyu4j.model.Tag;
 import com.mbledug.tagyu4j.model.TagSuggestionsResponse;
 
 /**
- * ResponseParser parses the xml response String retrieved from Tagyu service.
+ * {@link ResponseParser} parses the xml response String retrieved from Tagyu
+ * service.
  * @author Cliffano Subagio
  */
 public class ResponseParserImpl implements ResponseParser {
 
     /**
-     * Create a ResponseParser instance.
+     * Creates a {@link ResponseParserImpl} instance.
      */
     public ResponseParserImpl() {
     }
 
     /**
-     * Parse the xml response String for tag suggestions response.
+     * Parses the xml response String for tag suggestions response.
      * @param xmlString the response String to parse
      * @return response which contains suggested tags
      * @throws Tagyu4JException when there's a failure response from Tagyu
@@ -121,7 +122,7 @@ public class ResponseParserImpl implements ResponseParser {
 
 
     /**
-     * Check the root element for error tag. Throws Tagyu4JException
+     * Checks the root element for error tag. Throws {@link Tagyu4JException}
      * if the root element is an error tag.
      * @param root the root element on the xml string
      * @throws Tagyu4JException when the root element is error tag.
@@ -136,9 +137,9 @@ public class ResponseParserImpl implements ResponseParser {
     }
 
     /**
-     * Parse a Document out of an xml string.
+     * Parses a Document out of an xml string.
      * @param xmlString the xml string to parse from
-     * @return the DOcument from the xml string
+     * @return the Document from the xml string
      * @throws Tagyu4JException when there's a problem with
      *         parsing xml response string.
      */

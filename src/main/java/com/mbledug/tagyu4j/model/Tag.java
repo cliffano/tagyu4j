@@ -50,7 +50,7 @@ public class Tag {
     private String mHref;
 
     /**
-     * Create an instance of the tag.
+     * Creates an instance of the tag.
      * @param value the tag value
      * @param relation the tag relation
      * @param href the Tagyu url of the tag
@@ -62,7 +62,7 @@ public class Tag {
     }
 
     /**
-     * Get the Tagyu url of the tag.
+     * Gets the Tagyu url of the tag.
      * @return the Tagyu url of the tag
      */
     public final String getHref() {
@@ -70,7 +70,7 @@ public class Tag {
     }
 
     /**
-     * Get the tag relation.
+     * Gets the tag relation.
      * @return the tag relation
      */
     public final String getRelation() {
@@ -78,7 +78,7 @@ public class Tag {
     }
 
     /**
-     * Get the tag value.
+     * Gets the tag value.
      * @return the tag value
      */
     public final String getValue() {

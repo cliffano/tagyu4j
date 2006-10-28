@@ -31,7 +31,7 @@ package com.mbledug.tagyu4j.util;
 import com.mbledug.tagyu4j.exception.Tagyu4JException;
 
 /**
- * ServiceManager manages method call to service provider (i.e. Tagyu).
+ * {@link ServiceManager} manages method call to service provider (i.e. Tagyu).
  * @author Cliffano Subagio
  */
 public interface ServiceManager {
@@ -64,7 +64,7 @@ public interface ServiceManager {
             final String proxyPassword);
 
     /**
-     * Create a URL connection and retrieve the response String.
+     * Creates a URL connection and retrieve the response String.
      * @param url the base url which the request will be added to
      * @param request the request string to be passed on the url
      * @return the response String

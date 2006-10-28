@@ -33,14 +33,14 @@ import com.mbledug.tagyu4j.model.RelatedTagsResponse;
 import com.mbledug.tagyu4j.model.TagSuggestionsResponse;
 
 /**
- * ResponseParser parses the xml response String retrieved from Tagyu
- * service APIs, and construct a Response object.
+ * {@link ResponseParser} parses the xml response String retrieved from Tagyu
+ * service APIs, and construct a response object.
  * @author Cliffano Subagio
  */
 public interface ResponseParser {
 
     /**
-     * Parse the xml response String for tag suggestions response.
+     * Parses the xml response String for tag suggestions response.
      * @param xmlString the response String to parse
      * @return response which contains suggested tags
      * @throws Tagyu4JException when there's a failure response from Tagyu
@@ -50,7 +50,7 @@ public interface ResponseParser {
             final String xmlString) throws Tagyu4JException;
 
     /**
-     * Parse the xml response String for related tags response.
+     * Parses the xml response String for related tags response.
      * @param xmlString the response String to parse
      * @return response which contains related tags
      * @throws Tagyu4JException when there's a failure response from Tagyu

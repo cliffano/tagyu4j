@@ -41,7 +41,7 @@ public class Tagyu4JException extends Exception {
     private static final long serialVersionUID = 1;
 
     /**
-     * Create an exception with an error message.
+     * Creates an exception with an error message.
      * @param errorMessage the erros message of the exception
      */
     public Tagyu4JException(final String errorMessage) {
@@ -49,7 +49,7 @@ public class Tagyu4JException extends Exception {
     }
 
     /**
-     * Create an exception with an error message, and pass the cause.
+     * Creates an exception with an error message, and pass the cause.
      * @param errorMessage the error message of the exception
      * @param cause a Throwable that's causing this exception
      */

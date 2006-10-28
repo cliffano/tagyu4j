@@ -42,7 +42,7 @@ public class TagSuggestionsResponse extends AbstractResponse {
     private String mCategory;
 
     /**
-     * Create an instance with suggested tags and category.
+     * Creates an instance with suggested tags and category.
      * @param suggestedTags the suggested tags
      * @param category the category
      */
@@ -54,7 +54,7 @@ public class TagSuggestionsResponse extends AbstractResponse {
     }
 
     /**
-     * Get the category.
+     * Gets the category.
      * @return the category
      */
     public final String getCategory() {
@@ -62,8 +62,8 @@ public class TagSuggestionsResponse extends AbstractResponse {
     }
 
     /**
-     * Get a list of suggested tags.
-     * @return the list of suggested tags (Tag objects)
+     * Gets a list of suggested {@link Tag}s.
+     * @return the list of suggested {@link Tag}s
      */
     public final List getSuggestedTags() {
         return getTags();

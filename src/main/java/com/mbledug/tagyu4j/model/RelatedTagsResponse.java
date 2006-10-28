@@ -42,7 +42,7 @@ public class RelatedTagsResponse extends AbstractResponse {
     private String mRequestTag;
 
     /**
-     * Create an instance with related tags and request tag.
+     * Creates an instance with related tags and request tag.
      * @param relatedTags a list of tags related to the request tag
      * @param requestTag the request tag
      */
@@ -54,8 +54,8 @@ public class RelatedTagsResponse extends AbstractResponse {
     }
 
     /**
-     * Get the related tags.
-     * @return a list of tags (Tag objects) related to the request tag
+     * Gets the related {@link Tag}s.
+     * @return a list of {@link Tag}s related to the request tag
      */
     public final List getRelatedTags() {
         return getTags();

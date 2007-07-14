@@ -6,14 +6,14 @@
     </links>
     <menu name="Reference">
       <item name="About" href="/index.html" />
-      <item name="Download" href="/download.html" />
+      <item name="Downloads" href="/downloads.html" />
       <item name="Usage" href="/usage.html" />
     </menu>
     <menu name="Project Info">
       <item name="Continuous Integration" href="/integration.html" />
       <item name="Dependencies" href="/dependencies.html" />
-      <!--
       <item name="Issue Tracking" href="/issue-tracking.html" />
+      <!--
       <item name="Mailing Lists" href="/mail-lists.html" />
       -->
       <item name="Project License" href="/license.html" />

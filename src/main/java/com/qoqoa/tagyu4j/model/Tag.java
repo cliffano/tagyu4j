@@ -26,3 +26,62 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qoqoa.tagyu4j.model;
+
+/**
+ * A representation of a tag information from Tagyu service.
+ * @author Cliffano
+ */
+public class Tag {
+
+    /**
+     * The value of the tag.
+     */
+    private String mValue;
+
+    /**
+     * The tag relation.
+     */
+    private String mRelation;
+
+    /**
+     * The Tagyu url of the tag.
+     */
+    private String mHref;
+
+    /**
+     * Creates an instance of the tag.
+     * @param value the tag value
+     * @param relation the tag relation
+     * @param href the Tagyu url of the tag
+     */
+    public Tag(final String value, final String relation, final String href) {
+        mValue = value;
+        mRelation = relation;
+        mHref = href;
+    }
+
+    /**
+     * Gets the Tagyu url of the tag.
+     * @return the Tagyu url of the tag
+     */
+    public final String getHref() {
+        return mHref;
+    }
+
+    /**
+     * Gets the tag relation.
+     * @return the tag relation
+     */
+    public final String getRelation() {
+        return mRelation;
+    }
+
+    /**
+     * Gets the tag value.
+     * @return the tag value
+     */
+    public final String getValue() {
+        return mValue;
+    }
+}

@@ -26,3 +26,46 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qoqoa.tagyu4j.model;
+
+import java.util.List;
+
+/**
+ * A response which contains suggested tags and category.
+ * @author Cliffano
+ */
+public class TagSuggestionsResponse extends AbstractResponse {
+
+    /**
+     * The category of the text provided.
+     */
+    private String mCategory;
+
+    /**
+     * Creates an instance with suggested tags and category.
+     * @param suggestedTags the suggested tags
+     * @param category the category
+     */
+    public TagSuggestionsResponse(
+            final List suggestedTags,
+            final String category) {
+        super(suggestedTags);
+        mCategory = category;
+    }
+
+    /**
+     * Gets the category.
+     * @return the category
+     */
+    public final String getCategory() {
+        return mCategory;
+    }
+
+    /**
+     * Gets a list of suggested {@link Tag}s.
+     * @return the list of suggested {@link Tag}s
+     */
+    public final List getSuggestedTags() {
+        return getTags();
+    }
+}

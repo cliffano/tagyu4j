@@ -26,3 +26,29 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qoqoa.tagyu4j.util;
+
+import com.qoqoa.tagyu4j.model.RelatedTagsResponse;
+import com.qoqoa.tagyu4j.model.TagSuggestionsResponse;
+
+/**
+ * {@link ResponseParser} parses the xml response String retrieved from Tagyu
+ * service APIs, and construct a response object.
+ * @author Cliffano Subagio
+ */
+public interface ResponseParser {
+
+    /**
+     * Parses the xml response String for tag suggestions response.
+     * @param xmlString the response String to parse
+     * @return response which contains suggested tags
+     */
+    TagSuggestionsResponse parseTagSuggestions(final String xmlString);
+
+    /**
+     * Parses the xml response String for related tags response.
+     * @param xmlString the response String to parse
+     * @return response which contains related tags
+     */
+    RelatedTagsResponse parseRelatedTags(final String xmlString);
+}

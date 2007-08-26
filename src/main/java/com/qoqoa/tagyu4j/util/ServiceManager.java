@@ -26,3 +26,47 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qoqoa.tagyu4j.util;
+
+
+/**
+ * {@link ServiceManager} manages method call to service provider (i.e. Tagyu).
+ * @author Cliffano Subagio
+ */
+public interface ServiceManager {
+
+    /**
+     * Sets the Tagyu authentication details username and password.
+     * @param username the Tagyu username
+     * @param password the Tagyu password
+     */
+    void setAuthentication(final String username, final String password);
+
+    /**
+     * Sets proxy details.
+     * @param proxyHost proxy host name
+     * @param proxyPort proxy port number
+     */
+    void setProxy(final String proxyHost, final int proxyPort);
+
+    /**
+     * Sets authenticated proxy details.
+     * @param proxyHost proxy host name
+     * @param proxyPort proxy port number
+     * @param proxyUsername proxy username
+     * @param proxyPassword proxy password
+     */
+    void setProxy(
+            final String proxyHost,
+            final int proxyPort,
+            final String proxyUsername,
+            final String proxyPassword);
+
+    /**
+     * Creates a URL connection and retrieve the response String.
+     * @param url the base url which the request will be added to
+     * @param request the request string to be passed on the url
+     * @return the response String
+     */
+    String execute(final String url, final String request);
+}

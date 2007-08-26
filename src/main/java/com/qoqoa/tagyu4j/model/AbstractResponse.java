@@ -26,3 +26,34 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qoqoa.tagyu4j.model;
+
+import java.util.List;
+
+/**
+ * Representation of Tagyu service response.
+ * @author Cliffano Subagio
+ */
+abstract class AbstractResponse {
+
+    /**
+     * A list of tags within the response.
+     */
+    private List mTags;
+
+    /**
+     * Creates a response instance.
+     * @param tags the list of tags
+     */
+    protected AbstractResponse(final List tags) {
+        mTags = tags;
+    }
+
+    /**
+     * Get the list of tags.
+     * @return the list of tags
+     */
+    protected final List getTags() {
+        return mTags;
+    }
+}

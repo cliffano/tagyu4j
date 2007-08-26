@@ -4,11 +4,11 @@
   <groupId>tagyu</groupId>
   <artifactId>tagyu4j</artifactId>
   <packaging>jar</packaging>
-  <version>0.4</version>
+  <version>0.5-SNAPSHOT</version>
   <description>Java API for Tagyu Service APIs http://www.tagyu.com/tools/rest.</description>
   <inceptionYear>2005</inceptionYear>
   <name>Tagyu4J</name>
-  <url>http://mbledug.com/projects/tagyu/tagyu4j</url>
+  <url>http://code.google.com/p/tagyu4j/</url>
   <issueManagement>
     <system>Google Code Issue</system>
     <url>http://code.google.com/p/tagyu4j/issues/list</url>
@@ -20,7 +20,7 @@
       <notifier>
         <type>mail</type>
         <configuration>
-          <address>cliffano@mbledug.com</address>
+          <address>cliffano@qoqoa.com</address>
         </configuration>
       </notifier>
     </notifiers>
@@ -40,10 +40,8 @@
     <developer>
       <id>cliffano</id>
       <name>Cliffano Subagio</name>
-      <email>cliffano@mbledug.com</email>
-      <url>http://mbledug.com/blog</url>
-      <organization>Mbledug</organization>
-      <organizationUrl>http://mbledug.com</organizationUrl>
+      <email>cliffano@qoqoa.com</email>
+      <url>http://qoqoa.com</url>
       <roles>
         <role>Developer</role>
       </roles>
@@ -56,10 +54,6 @@
       <url>LICENSE.txt</url>
     </license>
   </licenses>
-  <organization>
-    <name>Mbledug</name>
-    <url>http://mbledug.com</url>
-  </organization>
   <dependencies>
     <dependency>
       <groupId>commons-codec</groupId>
@@ -70,7 +64,7 @@
     <dependency>
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
-      <version>3.0</version>
+      <version>3.0.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -145,7 +139,7 @@
         <artifactId>maven-site-plugin</artifactId>
         <configuration>
           <templateDirectory>${basedir}/src/site</templateDirectory>
-          <template>mbledug-site.vm</template>
+          <template>custom-site.vm</template>
         </configuration>
       </plugin>
       <plugin>

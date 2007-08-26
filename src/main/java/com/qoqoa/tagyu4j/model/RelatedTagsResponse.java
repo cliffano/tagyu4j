@@ -26,3 +26,46 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qoqoa.tagyu4j.model;
+
+import java.util.List;
+
+/**
+ * A response which contains related tags and request tag.
+ * @author Cliffano
+ */
+public class RelatedTagsResponse extends AbstractResponse {
+
+    /**
+     * The request tag.
+     */
+    private String mRequestTag;
+
+    /**
+     * Creates an instance with related tags and request tag.
+     * @param relatedTags a list of tags related to the request tag
+     * @param requestTag the request tag
+     */
+    public RelatedTagsResponse(
+            final List relatedTags,
+            final String requestTag) {
+        super(relatedTags);
+        mRequestTag = requestTag;
+    }
+
+    /**
+     * Gets the related {@link Tag}s.
+     * @return a list of {@link Tag}s related to the request tag
+     */
+    public final List getRelatedTags() {
+        return getTags();
+    }
+
+    /**
+     * Get the request tag.
+     * @return the request tag
+     */
+    public final String getRequestTag() {
+        return mRequestTag;
+    }
+}

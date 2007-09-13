@@ -123,8 +123,7 @@
   </li>
 #end
 
-#macro ( mainMenu $menus )
-  #foreach( $menu in $menus )
+#macro ( mainMenu $menu )
     #if ( $menu.name )
     <h5>
       $menu.name
@@ -135,7 +134,6 @@
         #menuItem( $item )
       #end
     </ul>
-  #end
 #end
 
 #macro ( copyright )
@@ -270,15 +268,16 @@
     #end
 #end
 
-#set ( $host = "http://qoqoa.com" )
+#set ( $staticHost = "http://static.qoqoa.com" )
+#set ( $codeHost = "http://code.qoqoa.com" )
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>$title</title>
     <style type="text/css" media="all">
-      @import url("$host/styles/global.css");
+      @import url("$staticHost/styles/global.css");
     </style>
-    <link rel="shortcut icon" href="$host/images/favicon.ico"/>
+    <link rel="shortcut icon" href="$staticHost/images/favicon.ico"/>
     #foreach( $author in $authors )
       <meta name="author" content="$author" />
     #end
@@ -296,27 +295,31 @@
   <body>
     <div id="container">
       <div id="header">
-	  	<div id="logo">
-	  	  <a href="$host"><img src="$host/images/logo.jpg" height="60" width="76" alt="Qoqoa Logo"/></a>
+	  	<div id="logo"></div>
+	  	<div id="title">
+	  	  $project.name
 	  	</div>
-	  	<div id="nav">
-	  	  <a href="$host/projects/">Projects</a> / $project.name
-	  	</div>
+      </div>
+      <div id="nav">
+        <ul>
+          <li><a href="$codeHost/projects/">Projects</a></li>
+        </ul>
       </div>
       <div id="body">
         <div id="left" class="content">
           $bodyContent
         </div>
         <div id="center" class="bar">
-          #mainMenu( $decoration.body.menus )
+          #mainMenu( $decoration.body.menus.get(1) )
         </div>
         <div id="right" class="bar">
+          #mainMenu( $decoration.body.menus.get(0) )
+          #publishDate( "left" $decoration.publishDate $decoration.version )
           <p>
             <a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy">
-              <img alt="Built by Maven" src="$host/images/projects/maven-feather.png"></img>
+              <img alt="Built by Maven" src="$staticHost/images/projects/maven-feather.png"></img>
             </a>
           </p>
-          #publishDate( "left" $decoration.publishDate $decoration.version )
         </div>
       </div>
       <div id="footer">

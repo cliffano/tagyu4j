@@ -269,7 +269,6 @@
 #end
 
 #set ( $staticHost = "http://static.qoqoa.com" )
-#set ( $codeHost = "http://code.qoqoa.com" )
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -302,7 +301,9 @@
       </div>
       <div id="nav">
         <ul>
-          <li><a href="$codeHost/projects/">Projects</a></li>
+          <li><a href="http://qoqoa.com">Home</a></li>
+          <li><a href="http://blog.qoqoa.com">Blog</a></li>
+          <li><a href="http://code.qoqoa.com">Code</a></li>
         </ul>
       </div>
       <div id="body">
@@ -316,14 +317,14 @@
           #mainMenu( $decoration.body.menus.get(0) )
           #publishDate( "left" $decoration.publishDate $decoration.version )
           <p>
-            <a href="http://maven.apache.org/" title="Built by Maven" id="poweredBy">
-              <img alt="Built by Maven" src="$staticHost/images/projects/maven-feather.png"></img>
+            <a href="http://maven.apache.org">
+              <img src="$staticHost/images/projects/maven-feather.png" height="30" width="90" alt="Built by Maven"/>
             </a>
           </p>
         </div>
       </div>
       <div id="footer">
-        Copyright &copy; #copyright()#publishDate( "bottom" $decoration.publishDate $decoration.version ). Some Rights Reserved.
+        Copyright &copy; #copyright()#publishDate( "bottom" $decoration.publishDate $decoration.version). Some Rights Reserved.
       </div>
     </div>
   </body>

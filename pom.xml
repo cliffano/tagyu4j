@@ -14,7 +14,7 @@
     <url>http://code.google.com/p/tagyu4j/issues/list</url>
   </issueManagement>
   <ciManagement>
-    <system>cruisecontrol</system>
+    <system>hudson</system>
     <url>http://code.qoqoa.com/ci/java</url>
     <notifiers>
       <notifier>

@@ -17,26 +17,28 @@ public class Tagyu4JTest extends BaseTest {
         mDataFixture = new DataFixture();
     }
 
-    public void testGetTagSuggestionsWithTextViaLiveService() {
-        mTagyu4J = new Tagyu4J();
-        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
-        TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_TEXT);
-        assertTagSuggestionsResponse(response);
-    }
-
-    public void testGetTagSuggestionsWithUrlViaLiveService() {
-        mTagyu4J = new Tagyu4J();
-        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
-        TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_URL);
-        assertTagSuggestionsResponse(response);
-    }
-
-    public void testGetRelatedTagsViaLiveService() {
-        mTagyu4J = new Tagyu4J();
-        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
-        RelatedTagsResponse response = mTagyu4J.getRelatedTags("music");
-        assertRelatedTagsResponse(response);
-    }
+// Tests via live service is commented out while Tagyu is down.
+// http://kalsey.com/2006/08/and_thanks_for_all_the_fish/
+//    public void testGetTagSuggestionsWithTextViaLiveService() {
+//        mTagyu4J = new Tagyu4J();
+//        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
+//        TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_TEXT);
+//        assertTagSuggestionsResponse(response);
+//    }
+//
+//    public void testGetTagSuggestionsWithUrlViaLiveService() {
+//        mTagyu4J = new Tagyu4J();
+//        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
+//        TagSuggestionsResponse response = mTagyu4J.getTagSuggestions(DataFixture.REQUEST_TAG_URL);
+//        assertTagSuggestionsResponse(response);
+//    }
+//
+//    public void testGetRelatedTagsViaLiveService() {
+//        mTagyu4J = new Tagyu4J();
+//        mTagyu4J.setAuthentication(DataFixture.TAGYU_USERNAME, DataFixture.TAGYU_PASSWORD);
+//        RelatedTagsResponse response = mTagyu4J.getRelatedTags("music");
+//        assertRelatedTagsResponse(response);
+//    }
 
     public void testGetTagSuggestionsWithTextViaMockService() {
         mServiceManager = mDataFixture.createMockServiceManager(false);

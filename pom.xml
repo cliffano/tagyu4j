@@ -28,7 +28,7 @@
   <distributionManagement>
     <site>
       <id>localhost</id>
-      <url>file:///var/www/qoqoa/code/reports/tagyu/tagyu4j</url>
+      <url>file:///var/www/qoqoa/htdocs/code/reports/tagyu/tagyu4j</url>
     </site>
   </distributionManagement>
   <scm>

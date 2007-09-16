@@ -15,7 +15,7 @@
   </issueManagement>
   <ciManagement>
     <system>hudson</system>
-    <url>http://code.qoqoa.com/ci/java</url>
+    <url>http://code.qoqoa.com/ci/hudson/job/tagyu4j/</url>
     <notifiers>
       <notifier>
         <type>mail</type>

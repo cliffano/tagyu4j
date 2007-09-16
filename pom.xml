@@ -4,7 +4,7 @@
   <groupId>tagyu</groupId>
   <artifactId>tagyu4j</artifactId>
   <packaging>jar</packaging>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.5</version>
   <description>Java API for Tagyu Service APIs http://www.tagyu.com/tools/rest.</description>
   <inceptionYear>2005</inceptionYear>
   <name>Tagyu4J</name>

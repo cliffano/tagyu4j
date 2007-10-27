@@ -4,7 +4,7 @@
   <groupId>tagyu</groupId>
   <artifactId>tagyu4j</artifactId>
   <packaging>jar</packaging>
-  <version>0.5</version>
+  <version>0.6-SNAPSHOT</version>
   <description>Java API for Tagyu Service APIs http://www.tagyu.com/tools/rest.</description>
   <inceptionYear>2005</inceptionYear>
   <name>Tagyu4J</name>
@@ -15,7 +15,7 @@
   </issueManagement>
   <ciManagement>
     <system>hudson</system>
-    <url>http://localhost/hudson/job/tagyu4j/</url>
+    <url>http://dobby/hudson/job/tagyu4j/</url>
     <notifiers>
       <notifier>
         <type>mail</type>
@@ -78,10 +78,14 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>jmock</groupId>
-      <artifactId>jmock-cglib</artifactId>
-      <version>1.1.0</version>
-      <scope>test</scope>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymockclassextension</artifactId>
+      <version>2.2.2</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

@@ -28,7 +28,7 @@
   <distributionManagement>
     <site>
       <id>qoqoa</id>
-      <url>sftp://qoqoa.com:2218//var/www/qoqoa/htdocs/code/reports/tagyu/tagyu4j</url>
+      <url>sftp://qoqoa.com:2218//var/www/qoqoa/htdocs/projects/tagyu/tagyu4j/report</url>
     </site>
   </distributionManagement>
   <scm>

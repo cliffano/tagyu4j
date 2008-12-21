@@ -28,7 +28,7 @@
   <distributionManagement>
     <site>
       <id>qoqoa</id>
-      <url>scp://cliffano@qoqoa.com:2218/var/www/qoqoa/htdocs/code/tagyu/tagyu4j/report</url>
+      <url>scp://cliffano@qoqoa.com:2218/var/www/qoqoa.com/code/tagyu/tagyu4j/report</url>
     </site>
   </distributionManagement>
   <scm>

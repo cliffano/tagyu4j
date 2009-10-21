@@ -10,7 +10,7 @@
  *   * Redistributions in binary form must reproduce the above copyright notice,
  *     this list of conditions and the following disclaimer in the documentation
  *     and/or other materials provided with the distribution.
- *   * Neither the name of Qoqoa nor the names of its contributors
+ *   * Neither the name of Studio Cliffano nor the names of its contributors
  *     may be used to endorse or promote products derived from this software
  *     without specific prior written permission.
  *
@@ -26,46 +26,46 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qoqoa.tagyu4j.model;
+package com.cliffano.tagyu4j.model;
 
 import java.util.List;
 
 /**
- * A response which contains suggested tags and category.
+ * A response which contains related tags and request tag.
  * @author Cliffano
  */
-public class TagSuggestionsResponse extends AbstractResponse {
+public class RelatedTagsResponse extends AbstractResponse {
 
     /**
-     * The category of the text provided.
+     * The request tag.
      */
-    private String mCategory;
+    private String mRequestTag;
 
     /**
-     * Creates an instance with suggested tags and category.
-     * @param suggestedTags the suggested tags
-     * @param category the category
+     * Creates an instance with related tags and request tag.
+     * @param relatedTags a list of tags related to the request tag
+     * @param requestTag the request tag
      */
-    public TagSuggestionsResponse(
-            final List suggestedTags,
-            final String category) {
-        super(suggestedTags);
-        mCategory = category;
+    public RelatedTagsResponse(
+            final List relatedTags,
+            final String requestTag) {
+        super(relatedTags);
+        mRequestTag = requestTag;
     }
 
     /**
-     * Gets the category.
-     * @return the category
+     * Gets the related {@link Tag}s.
+     * @return a list of {@link Tag}s related to the request tag
      */
-    public final String getCategory() {
-        return mCategory;
-    }
-
-    /**
-     * Gets a list of suggested {@link Tag}s.
-     * @return the list of suggested {@link Tag}s
-     */
-    public final List getSuggestedTags() {
+    public final List getRelatedTags() {
         return getTags();
+    }
+
+    /**
+     * Get the request tag.
+     * @return the request tag
+     */
+    public final String getRequestTag() {
+        return mRequestTag;
     }
 }

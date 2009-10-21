@@ -10,7 +10,7 @@
  *   * Redistributions in binary form must reproduce the above copyright notice,
  *     this list of conditions and the following disclaimer in the documentation
  *     and/or other materials provided with the distribution.
- *   * Neither the name of Qoqoa nor the names of its contributors
+ *   * Neither the name of Studio Cliffano nor the names of its contributors
  *     may be used to endorse or promote products derived from this software
  *     without specific prior written permission.
  *
@@ -26,34 +26,29 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qoqoa.tagyu4j.model;
+package com.cliffano.tagyu4j.util;
 
-import java.util.List;
+import com.cliffano.tagyu4j.model.RelatedTagsResponse;
+import com.cliffano.tagyu4j.model.TagSuggestionsResponse;
 
 /**
- * Representation of Tagyu service response.
+ * {@link ResponseParser} parses the xml response String retrieved from Tagyu
+ * service APIs, and construct a response object.
  * @author Cliffano Subagio
  */
-abstract class AbstractResponse {
+public interface ResponseParser {
 
     /**
-     * A list of tags within the response.
+     * Parses the xml response String for tag suggestions response.
+     * @param xmlString the response String to parse
+     * @return response which contains suggested tags
      */
-    private List mTags;
+    TagSuggestionsResponse parseTagSuggestions(final String xmlString);
 
     /**
-     * Creates a response instance.
-     * @param tags the list of tags
+     * Parses the xml response String for related tags response.
+     * @param xmlString the response String to parse
+     * @return response which contains related tags
      */
-    protected AbstractResponse(final List tags) {
-        mTags = tags;
-    }
-
-    /**
-     * Get the list of tags.
-     * @return the list of tags
-     */
-    protected final List getTags() {
-        return mTags;
-    }
+    RelatedTagsResponse parseRelatedTags(final String xmlString);
 }

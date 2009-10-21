@@ -1,4 +1,6 @@
-package com.qoqoa.tagyu4j.model;
+package com.cliffano.tagyu4j.model;
+
+import com.cliffano.tagyu4j.model.Tag;
 
 import junit.framework.TestCase;
 

@@ -1,4 +1,6 @@
-package com.qoqoa.tagyu4j.exception;
+package com.cliffano.tagyu4j.exception;
+
+import com.cliffano.tagyu4j.exception.Tagyu4JException;
 
 import junit.framework.TestCase;
 

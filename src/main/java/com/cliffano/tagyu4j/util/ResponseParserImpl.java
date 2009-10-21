@@ -10,7 +10,7 @@
  *   * Redistributions in binary form must reproduce the above copyright notice,
  *     this list of conditions and the following disclaimer in the documentation
  *     and/or other materials provided with the distribution.
- *   * Neither the name of Qoqoa nor the names of its contributors
+ *   * Neither the name of Studio Cliffano nor the names of its contributors
  *     may be used to endorse or promote products derived from this software
  *     without specific prior written permission.
  *
@@ -26,7 +26,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qoqoa.tagyu4j.util;
+package com.cliffano.tagyu4j.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,10 +37,10 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-import com.qoqoa.tagyu4j.exception.Tagyu4JException;
-import com.qoqoa.tagyu4j.model.RelatedTagsResponse;
-import com.qoqoa.tagyu4j.model.Tag;
-import com.qoqoa.tagyu4j.model.TagSuggestionsResponse;
+import com.cliffano.tagyu4j.exception.Tagyu4JException;
+import com.cliffano.tagyu4j.model.RelatedTagsResponse;
+import com.cliffano.tagyu4j.model.Tag;
+import com.cliffano.tagyu4j.model.TagSuggestionsResponse;
 
 /**
  * {@link ResponseParser} parses the xml response String retrieved from Tagyu

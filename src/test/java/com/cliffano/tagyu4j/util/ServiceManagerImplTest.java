@@ -1,4 +1,4 @@
-package com.qoqoa.tagyu4j.util;
+package com.cliffano.tagyu4j.util;
 
 import java.io.IOException;
 
@@ -14,7 +14,9 @@ import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.easymock.classextension.EasyMock;
 
-import com.qoqoa.tagyu4j.exception.Tagyu4JException;
+import com.cliffano.tagyu4j.exception.Tagyu4JException;
+import com.cliffano.tagyu4j.util.ServiceManager;
+import com.cliffano.tagyu4j.util.ServiceManagerImpl;
 
 public class ServiceManagerImplTest extends TestCase {
 

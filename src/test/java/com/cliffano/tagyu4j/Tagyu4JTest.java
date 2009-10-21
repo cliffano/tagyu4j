@@ -1,4 +1,4 @@
-package com.qoqoa.tagyu4j;
+package com.cliffano.tagyu4j;
 
 import java.util.ArrayList;
 
@@ -6,10 +6,11 @@ import junit.framework.TestCase;
 
 import org.easymock.classextension.EasyMock;
 
-import com.qoqoa.tagyu4j.model.RelatedTagsResponse;
-import com.qoqoa.tagyu4j.model.TagSuggestionsResponse;
-import com.qoqoa.tagyu4j.util.ResponseParser;
-import com.qoqoa.tagyu4j.util.ServiceManager;
+import com.cliffano.tagyu4j.Tagyu4J;
+import com.cliffano.tagyu4j.model.RelatedTagsResponse;
+import com.cliffano.tagyu4j.model.TagSuggestionsResponse;
+import com.cliffano.tagyu4j.util.ResponseParser;
+import com.cliffano.tagyu4j.util.ServiceManager;
 
 public class Tagyu4JTest extends TestCase {
 

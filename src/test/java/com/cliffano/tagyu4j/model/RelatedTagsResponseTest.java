@@ -1,7 +1,10 @@
-package com.qoqoa.tagyu4j.model;
+package com.cliffano.tagyu4j.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.cliffano.tagyu4j.model.RelatedTagsResponse;
+import com.cliffano.tagyu4j.model.Tag;
 
 import junit.framework.TestCase;
 

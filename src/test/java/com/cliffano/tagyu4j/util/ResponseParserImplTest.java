@@ -1,13 +1,14 @@
-package com.qoqoa.tagyu4j.util;
+package com.cliffano.tagyu4j.util;
 
 import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.qoqoa.tagyu4j.exception.Tagyu4JException;
-import com.qoqoa.tagyu4j.model.RelatedTagsResponse;
-import com.qoqoa.tagyu4j.model.Tag;
-import com.qoqoa.tagyu4j.model.TagSuggestionsResponse;
+import com.cliffano.tagyu4j.exception.Tagyu4JException;
+import com.cliffano.tagyu4j.model.RelatedTagsResponse;
+import com.cliffano.tagyu4j.model.Tag;
+import com.cliffano.tagyu4j.model.TagSuggestionsResponse;
+import com.cliffano.tagyu4j.util.ResponseParserImpl;
 
 public class ResponseParserImplTest extends TestCase {
 

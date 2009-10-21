@@ -1,8 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html>
-<head>
-<!--
-
 /**
  * Copyright (c) 2005-2007, Cliffano Subagio
  * All rights reserved.
@@ -15,7 +10,7 @@
  *   * Redistributions in binary form must reproduce the above copyright notice,
  *     this list of conditions and the following disclaimer in the documentation
  *     and/or other materials provided with the distribution.
- *   * Neither the name of Qoqoa nor the names of its contributors
+ *   * Neither the name of Studio Cliffano nor the names of its contributors
  *     may be used to endorse or promote products derived from this software
  *     without specific prior written permission.
  *
@@ -31,11 +26,62 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
--->
-</head>
-<body bgcolor="white">
+package com.cliffano.tagyu4j.model;
 
-Provides exception classes to Tagyu4J.
+/**
+ * A representation of a tag information from Tagyu service.
+ * @author Cliffano
+ */
+public class Tag {
 
-</body>
-</html>
+    /**
+     * The value of the tag.
+     */
+    private String mValue;
+
+    /**
+     * The tag relation.
+     */
+    private String mRelation;
+
+    /**
+     * The Tagyu url of the tag.
+     */
+    private String mHref;
+
+    /**
+     * Creates an instance of the tag.
+     * @param value the tag value
+     * @param relation the tag relation
+     * @param href the Tagyu url of the tag
+     */
+    public Tag(final String value, final String relation, final String href) {
+        mValue = value;
+        mRelation = relation;
+        mHref = href;
+    }
+
+    /**
+     * Gets the Tagyu url of the tag.
+     * @return the Tagyu url of the tag
+     */
+    public final String getHref() {
+        return mHref;
+    }
+
+    /**
+     * Gets the tag relation.
+     * @return the tag relation
+     */
+    public final String getRelation() {
+        return mRelation;
+    }
+
+    /**
+     * Gets the tag value.
+     * @return the tag value
+     */
+    public final String getValue() {
+        return mValue;
+    }
+}

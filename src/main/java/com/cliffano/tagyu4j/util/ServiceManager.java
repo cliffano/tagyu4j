@@ -10,7 +10,7 @@
  *   * Redistributions in binary form must reproduce the above copyright notice,
  *     this list of conditions and the following disclaimer in the documentation
  *     and/or other materials provided with the distribution.
- *   * Neither the name of Qoqoa nor the names of its contributors
+ *   * Neither the name of Studio Cliffano nor the names of its contributors
  *     may be used to endorse or promote products derived from this software
  *     without specific prior written permission.
  *
@@ -26,46 +26,47 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qoqoa.tagyu4j.model;
+package com.cliffano.tagyu4j.util;
 
-import java.util.List;
 
 /**
- * A response which contains related tags and request tag.
- * @author Cliffano
+ * {@link ServiceManager} manages method call to service provider (i.e. Tagyu).
+ * @author Cliffano Subagio
  */
-public class RelatedTagsResponse extends AbstractResponse {
+public interface ServiceManager {
 
     /**
-     * The request tag.
+     * Sets the Tagyu authentication details username and password.
+     * @param username the Tagyu username
+     * @param password the Tagyu password
      */
-    private String mRequestTag;
+    void setAuthentication(final String username, final String password);
 
     /**
-     * Creates an instance with related tags and request tag.
-     * @param relatedTags a list of tags related to the request tag
-     * @param requestTag the request tag
+     * Sets proxy details.
+     * @param proxyHost proxy host name
+     * @param proxyPort proxy port number
      */
-    public RelatedTagsResponse(
-            final List relatedTags,
-            final String requestTag) {
-        super(relatedTags);
-        mRequestTag = requestTag;
-    }
+    void setProxy(final String proxyHost, final int proxyPort);
 
     /**
-     * Gets the related {@link Tag}s.
-     * @return a list of {@link Tag}s related to the request tag
+     * Sets authenticated proxy details.
+     * @param proxyHost proxy host name
+     * @param proxyPort proxy port number
+     * @param proxyUsername proxy username
+     * @param proxyPassword proxy password
      */
-    public final List getRelatedTags() {
-        return getTags();
-    }
+    void setProxy(
+            final String proxyHost,
+            final int proxyPort,
+            final String proxyUsername,
+            final String proxyPassword);
 
     /**
-     * Get the request tag.
-     * @return the request tag
+     * Creates a URL connection and retrieve the response String.
+     * @param url the base url which the request will be added to
+     * @param request the request string to be passed on the url
+     * @return the response String
      */
-    public final String getRequestTag() {
-        return mRequestTag;
-    }
+    String execute(final String url, final String request);
 }

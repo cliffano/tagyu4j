@@ -15,7 +15,7 @@
   </issueManagement>
   <ciManagement>
     <system>hudson</system>
-    <url>http://tools.cliffano.com/hudson/job/tagyu4j/</url>
+    <url>http://tools.cliffano.com/hudson/job/tagyu-tagyu4j/</url>
     <notifiers>
       <notifier>
         <type>mail</type>

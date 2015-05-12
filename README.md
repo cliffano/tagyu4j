@@ -1,4 +1,4 @@
-Tagyu4J [![http://travis-ci.org/cliffano/tagyu4j](https://secure.travis-ci.org/cliffano/tagyu4j.png?branch=master)](http://travis-ci.org/cliffano/tagyu4j)
+Tagyu4J [![http://travis-ci.org/cliffano/tagyu4j](https://img.shields.io/travis/cliffano/tagyu4j.svg)](http://travis-ci.org/cliffano/tagyu4j)
 ------
 
 Tagyu4J is a Java library for [Tagyu REST web services](http://tagyu.com/tools/rest/). 
